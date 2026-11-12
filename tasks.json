@@ -1,0 +1,51 @@
+{
+  // Terminal tasks. Ctrl+Shift+B runs the default build task below.
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "label": "npm: dev (API + client)",
+      "detail": "Starts the Express API on :4000 and the Vite client on :5173"
+    },
+    {
+      "type": "npm",
+      "script": "seed",
+      "problemMatcher": [],
+      "label": "npm: seed (load demo data)",
+      "detail": "Loads the demo dataset. Skips if the database already has data."
+    },
+    {
+      "type": "npm",
+      "script": "reset",
+      "problemMatcher": [],
+      "label": "npm: reset (wipe + reload demo data)",
+      "detail": "Drops every table and reloads the demo dataset from scratch."
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": [],
+      "group": "build",
+      "label": "npm: build (production client)"
+    },
+    {
+      "type": "npm",
+      "script": "start",
+      "problemMatcher": [],
+      "label": "npm: start (serve production build)"
+    },
+    {
+      // Runs the end-to-end API checks against a running server.
+      "type": "shell",
+      "command": "node --experimental-sqlite --disable-warning=ExperimentalWarning -e \"fetch('http://localhost:4000/api/health').then(r=>r.json()).then(d=>console.log('API healthy on driver:',d.driver)).catch(e=>{console.error('API unreachable - start it first');process.exit(1)})\"",
+      "problemMatcher": [],
+      "label": "Check API health"
+    }
+  ]
+}

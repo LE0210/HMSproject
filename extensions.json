@@ -1,0 +1,11 @@
+{
+  // Recommendations shown by VS Code when this workspace is opened.
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "mtxr.sqltools",
+    "joe-re/sqltools-driver-sqlite",
+    "esbenp.prettier-vscode",
+    "dsznajder.es7-react-js-snippets"
+  ],
+  "unwantedRecommendations": []
+}

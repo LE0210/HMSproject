@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.env
+*.log
+
+# SQLite database and its write-ahead log sidecars (-wal / -shm).
+# These contain live patient data and must never be committed.
+server/data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+.DS_Store
+
+# .vscode — commit the shared run/debug config, ignore personal settings
+.vscode/*
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+.idea/

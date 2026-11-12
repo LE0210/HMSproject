@@ -1,0 +1,25 @@
+{
+  "name": "hms-community-general",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Integrated Hospital Management System (HMS) - Community General Hospital. NPRT630 Phase 3 prototype.",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c cyan,magenta \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm run dev --workspace server",
+    "dev:client": "npm run dev --workspace client",
+    "start": "npm run start --workspace server",
+    "build": "npm run build --workspace client",
+    "seed": "npm run seed --workspace server",
+    "reset": "npm run reset --workspace server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

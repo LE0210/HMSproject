@@ -1,0 +1,75 @@
+{
+  // Run and debug configuration for the HMS prototype.
+  // Press F5 and pick a configuration, or use the "Run and Debug" panel.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // The API. --experimental-sqlite is required: the default driver uses
+      // Node's built-in node:sqlite module. --disable-warning keeps the
+      // "SQLite is experimental" notice out of the debug console.
+      "name": "API (debug)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--experimental-sqlite", "--disable-warning=ExperimentalWarning"],
+      "program": "${workspaceFolder}/server/src/index.js",
+      "cwd": "${workspaceFolder}/server",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "outputCapture": {
+        "stdout": [
+          "200",
+          "201",
+          "202",
+          "304",
+          " !",
+          " !!"
+        ],
+        "stderr": ["error", "Error", "✗"]
+      }
+    },
+    {
+      // The Vite dev server. Vite is hoisted to the workspace root by npm.
+      "name": "Client (Vite debug)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "program": "${workspaceFolder}/node_modules/vite/bin/vite.js",
+      "cwd": "${workspaceFolder}/client",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**", "**/node_modules/vite/dist/**"]
+    },
+    {
+      // Edge with the React devtools extension available.
+      "name": "Browser (Edge)",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/client",
+      "profile": "Default"
+    },
+    {
+      // API with an auto-attached client, for full-stack debugging.
+      "name": "Full stack (API + client)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--experimental-sqlite", "--disable-warning=ExperimentalWarning", "--inspect=0.9229"],
+      "program": "${workspaceFolder}/server/src/index.js",
+      "cwd": "${workspaceFolder}/server",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"],
+      "autoAttachChildProcesses": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "API + Client (debug both)",
+      "configurations": ["API (debug)", "Client (Vite debug)"],
+      "stopAll": true
+    }
+  ]
+}
